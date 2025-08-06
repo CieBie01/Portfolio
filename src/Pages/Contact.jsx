@@ -4,6 +4,9 @@ function Contact() {
   const [isFocused, setIsFocused] = useState(false);
   const [secIsFocused, setSecIsFocused] = useState(false);
   const [textareaIsFocused, setTextareaIsFocused] = useState(false);
+  const [message, setMessage] = useState("");
+  const [whatsappNumber, setWhatsappNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <div className="continer min-h-screen flex items-center justify-center bg-gray-900 py-16 mt-20">
@@ -20,6 +23,8 @@ function Contact() {
                   <input
                     className="w-80  h-12 p-4  text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-white peer"
                     type="text"
+                    value={whatsappNumber}
+                    onChange={(e) => setWhatsappNumber(e.target.value)}
                     name="number"
                     required
                     onFocus={() => setIsFocused(true)}
@@ -27,7 +32,7 @@ function Contact() {
                   />
                   <label
                     className={`absolute left-4 text-white font-medium transition-all duration-200 pointer-events-none ${
-                      isFocused
+                      isFocused|| whatsappNumber
                         ? "transform -translate-y-6 text-sm  px-2"
                         : "top-3 text-gray-400 text-lg"
                     }`}
@@ -40,6 +45,8 @@ function Contact() {
                   <input
                     className="w-80  h-12 p-4 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-white peer"
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     name="email"
                     required
                     onFocus={() => setSecIsFocused(true)}
@@ -47,7 +54,7 @@ function Contact() {
                   />
                   <label
                     className={`absolute left-4 text-white font-medium transition-all duration-200 pointer-events-none ${
-                      secIsFocused
+                      secIsFocused|| email
                         ? "transform -translate-y-6 text-sm  px-2"
                         : "top-3 text-gray-400 text-lg"
                     }`}
@@ -60,16 +67,18 @@ function Contact() {
                 <div className="relative mx-auto">
                   <textarea
                     required
+                    value={message }
+                    onChange={(e) => setMessage(e.target.value)}
                     className={`text-white bg-gray-900 lg:w-100 w-80 h-40 p-2 py-9 focus:right-1 focus:ring-white rounded-lg 
                   `}
                     onFocus={() => setTextareaIsFocused(true)}
-                    onChange={() => setTextareaIsFocused(true)}
+                   
                     onBlur={() => setTextareaIsFocused(false)}
                   ></textarea>
                   <label
                     className={`absolute left-4 text-white font-medium transition-all duration-200 pointer-events-none 
                        ${
-                         textareaIsFocused
+                         textareaIsFocused|| message
                            ? "transform -translate-y-0.5 text-sm  px-2"
                            : "top-3 text-gray-400 text-lg"
                        }`}

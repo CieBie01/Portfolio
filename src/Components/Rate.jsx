@@ -6,6 +6,9 @@ function Rate() {
   const [commentFocus, setCommentFocus] = useState(false);
   const [starHover, setStarHover] = useState(0);
   const [rating, setRating] = useState(0);
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+
 
   function handleHover(index) {
     setStarHover(index);
@@ -20,7 +23,7 @@ function Rate() {
   }
 
   return (
-    <form className="min-h-screen flex items-center justify-center bg-gray-900 pt-24 pb-16">
+    <form className="min-h-screen flex items-center justify-center bg-gray-900 pt-24 ">
       <div className="flex flex-col items-center bg-gray-800 rounded-lg shadow-xl p-6 max-w-2xl w-full mx-4 border-t-2 border-b-2 border-gray-600">
         {/* Rating Section */}
         <div className="w-full text-center mb-12">
@@ -34,7 +37,7 @@ function Rate() {
               index += 1;
               return (
                 <FaStar
-                  className={`cursor-pointer transition-all duration-150 ${
+                  className={` cursor-pointer transition-all duration-150 ${
                     index <= (starHover || rating)
                       ? "text-yellow-500 scale-110"
                       : "text-gray-700"
@@ -43,11 +46,14 @@ function Rate() {
                   onClick={() => handleStarClick(index)}
                   onMouseEnter={() => handleHover(index)}
                   onMouseLeave={handleMouseLeave}
-                  size={36}
+                 size={25}
                 />
+              
               );
             })}
+            
           </div>
+          <div className="text-xl font-medium text-yellow-400"><p>{starHover} out of 10</p></div>
         </div>
 
         {/* Feedback Section */}
@@ -66,10 +72,13 @@ function Rate() {
                 className="w-full h-12 px-4 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 peer"
                 type="text"
                 name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
               />
               <label
                 className={`absolute left-4 font-medium transition-all duration-200 pointer-events-none ${
-                  nameFocus
+                  nameFocus|| name
                     ? "text-blue-400 transform -translate-y-6 text-sm px-2 bg-gray-800"
                     : "top-3 text-gray-400 text-base"
                 }`}
@@ -85,10 +94,13 @@ function Rate() {
                 className="w-full h-40 p-4 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                 onFocus={() => setCommentFocus(true)}
                 onBlur={() => setCommentFocus(false)}
+                value={comment }
+                onChange={(e) => setComment(e.target.value)}
+                name="comment"
               ></textarea>
               <label
                 className={`absolute left-4 font-medium transition-all duration-200 pointer-events-none ${
-                  commentFocus
+                  commentFocus|| comment
                     ? "text-blue-400 transform -translate-y-6 text-sm px-2 bg-gray-800"
                     : "top-4 text-gray-400 text-base"
                 }`}
