@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link as RouterLink } from 'react-router-dom'; // Renamed to avoid conflict
 import { GrClose } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-scroll";
@@ -118,13 +117,14 @@ function Navbar() {
               Portfolio
             </li>
             <li className="hover:text-fuchsia-950 active:scale-105 cursor-pointer transition ease-in-out duration-300 py-1 border-b border-slate-700">
-              <RouterLink
-                to="/Contact"
-               
+              <Link
+                to="Contact"
+                smooth={true}
+                duration={500}
                 onClick={() => setNav(false)}
               >
                 Contact Me
-              </RouterLink>
+              </Link>
             </li>
           </ul>
         </div>
