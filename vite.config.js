@@ -8,8 +8,9 @@ export default defineConfig({
     react(),
     tailwindcss()  
   ],
-  base: '/Portfolio/', // Must match your repo name
+  base: '/Portfolio', // Must match your repo name exactly
   build: {
-    outDir: 'dist',
+    outDir: 'docs', // GitHub Pages can auto-detect this folder
+    emptyOutDir: true
   }
 })
