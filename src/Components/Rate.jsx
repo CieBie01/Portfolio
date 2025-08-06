@@ -115,7 +115,7 @@ function Rate() {
         <div className="mt-12">
           <button
             className="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all duration-300 font-medium shadow-lg"
-            type="submit"
+            type="button"
           >
             Submit Feedback
           </button>

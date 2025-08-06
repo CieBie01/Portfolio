@@ -14,7 +14,7 @@ function App() {
             {/**Image Component */}
       <Routes>
         <Route path="/Portfolio" element={<Landing />} />
-        <Route path="/rate_my_work" element={<RatePage />} />
+        <Route path="/rate" element={<RatePage />} />
        
       </Routes>
     </div>

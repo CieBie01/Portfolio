@@ -27,7 +27,7 @@ const Landing = () => {
             My Work
           </button>
           <button className="bg-green-900 items-center  text-white w-30 h-10 rounded-md hover:scale-105 hover:ring-green-200 active:scale-110 duration-300 ease-in-out transition cursor-pointer">
-            <Link to="/rate_my_work">
+            <Link to="/rate">
               Rate My Work
             </Link>
           </button>
