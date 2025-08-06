@@ -9,13 +9,13 @@ import About from "./About.jsx";
 import Skills from "./Skills.jsx";
 import Contact from "./Contact.jsx";
 import RatePage from "./RatePage.jsx";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
 const Landing = () => {
   return (
     <div>
       {/**Navbar Component */}
       <div>
-        <Navbar />
+        <Navbar  />
       </div>
       {/**Image Component */}
       <Element name="Home">
@@ -31,7 +31,7 @@ const Landing = () => {
             My Work
           </button>
           <button className="bg-green-900 items-center  text-white w-30 h-10 rounded-md hover:scale-105 hover:ring-green-200 active:scale-110 duration-300 ease-in-out transition cursor-pointer">
-            <Link smooth={true} duration={500} to="Rating">
+            <Link to="/Rating">
               Rate My Work
             </Link>
           </button>
