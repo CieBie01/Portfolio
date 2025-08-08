@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-scroll";
+import { Link as ReactLink } from "react-router-dom";
 function Navbar() {
   const [nav, setNav] = useState(false);
   const menuRef = useRef(null);
@@ -46,12 +47,14 @@ function Navbar() {
               </Link>
             </li>
             <li className="hover:hover:text-fuchsia-950 active:scale-105 cursor-pointer transition ease-in-out duration-300">
-              Portfolio
+              <ReactLink to="/Portfolio/rate" >
+                Rate My Work
+              </ReactLink>
             </li>
             <li className="hover:hover:text-fuchsia-950 active:scale-105 cursor-pointer transition ease-in-out duration-300">
-              <Link to="Contact" smooth={true} duration={500}>
+              <ReactLink to="/Portfolio/contact" >
                 Contact Me
-              </Link>
+              </ReactLink>
             </li>
           </ul>
         </div>
@@ -114,17 +117,22 @@ function Navbar() {
               </Link>
             </li>
             <li className="hover:text-fuchsia-950 active:scale-105 cursor-pointer transition ease-in-out duration-300 py-1 border-b border-slate-700">
-              Portfolio
+              <ReactLink
+                to="/Portfolio/rate"
+                
+                onClick={() => setNav(false)}
+              >
+                Rate My Work
+              </ReactLink>
             </li>
             <li className="hover:text-fuchsia-950 active:scale-105 cursor-pointer transition ease-in-out duration-300 py-1 border-b border-slate-700">
-              <Link
-                to="Contact"
-                smooth={true}
-                duration={500}
+              <ReactLink
+                to="/Portfolio/contact"
+               
                 onClick={() => setNav(false)}
               >
                 Contact Me
-              </Link>
+              </ReactLink>
             </li>
           </ul>
         </div>

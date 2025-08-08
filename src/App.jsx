@@ -1,22 +1,22 @@
 import React from "react";
 import Landing from "./Pages/Landing.jsx";
-import { Routes, Route } from "react-router-dom";
-import RatePage from "./Pages/RatePage.jsx";
-import Contact from "./Pages/Contact.jsx";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar.jsx";
+import Contact from "./Pages/Contact.jsx";
+import RatePage from "./Pages/RatePage.jsx";
+import { Navigate } from "react-router-dom";
 function App() {
   return (
-    <div className=" relative min-h-screen w-full overflow-x-hidden bg-slate-950">
-        {/**Navbar Component */}
-            <div>
-              <Navbar  />
-            </div>
-            {/**Image Component */}
-      <Routes>
-        <Route path="/Portfolio" element={<Landing />} />
-        <Route path="/rate" element={<RatePage />} />
-       
-      </Routes>
+    <div className="min-h-screen w-full overflow-x-hidden bg-slate-950">
+      <main className="pt-16">
+        {" "}
+        <Routes>
+          <Route path="/Portfolio/" element={<Landing />} />
+          <Route path="/Portfolio/rate" element={<RatePage />} />
+          <Route path="/Portfolio/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/Portfolio/" replace />} />
+        </Routes>
+      </main>
     </div>
   );
 }

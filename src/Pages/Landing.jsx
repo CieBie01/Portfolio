@@ -1,19 +1,21 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 import Image from "../Components/Image";
-import TimedSentence from "../Components/TimedSentence";
+
 import Developer from "../Components/Developer";
 
 import { Element } from "react-scroll";
 import About from "./About.jsx";
 import Skills from "./Skills.jsx";
 
-import { Link } from "react-router-dom";
-import Contact from "./Contact.jsx";
+
 const Landing = () => {
   return (
     <div>
-    
+        <div className="fixed top-0 left-0 right-0 z-50">
+        <Navbar />
+      </div>
+
       <Element name="Home">
         <div className="container  bg-gray-900 flex lg:flex-row flex-col justify-between items-center p-4 mx-auto ">
           <Image />
@@ -25,11 +27,6 @@ const Landing = () => {
           </button>
           <button className="bg-indigo-600   text-white w-30 h-10 rounded-md hover:scale-105 hover:ring-green-200 active:scale-110 duration-300 ease-in-out transition cursor-pointer">
             My Work
-          </button>
-          <button className="bg-green-900 items-center  text-white w-30 h-10 rounded-md hover:scale-105 hover:ring-green-200 active:scale-110 duration-300 ease-in-out transition cursor-pointer">
-            <Link to="/rate">
-              Rate My Work
-            </Link>
           </button>
         </div>
       </Element>
@@ -45,15 +42,7 @@ const Landing = () => {
           <Skills />
         </div>
       </Element>
-       <Element name="Contact">
-        <div>
-          <Contact />
-        </div>
-      </Element>
-
-    
-
-     
+      
     </div>
   );
 };
