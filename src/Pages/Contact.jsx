@@ -93,7 +93,7 @@ function Contact() {
   return (
     <form onSubmit={handleSubmit} className="min-h-screen bg-gray-900 py-16">
       {toast.show && (
-        <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg font-medium text-lg shadow-lg transition-all duration-300 ${
+        <div className={`fixed top-4 left-1/2 w-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg font-medium text-lg shadow-lg transition-all duration-300 ${
           toast.type === "success"
             ? "bg-green-500/20 text-green-500 border border-green-500/50 backdrop-blur-md"
             : "bg-red-500/20 text-red-500 border border-red-500/50 backdrop-blur-md"
