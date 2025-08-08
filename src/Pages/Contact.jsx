@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Home from "../Components/Home";
 
 function Contact() {
@@ -8,9 +8,99 @@ function Contact() {
   const [message, setMessage] = useState("");
   const [whatsappNumber, setWhatsappNumber] = useState("");
   const [email, setEmail] = useState("");
+    const [toast, setToast] = useState({ show: false, message: "", type: "" });
+  
+    useEffect(() => {
+        if (toast.show) {
+          const timer = setTimeout(() => {
+            setToast({ ...toast, show: false });
+          }, 5000);
+          return () => clearTimeout(timer);
+        }
+      }, [toast]);
 
+        const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!whatsappNumber || !email.trim() || !message.trim()) {
+      setToast({
+        show: true,
+        message: "Please fill in all fields and provide a rating",
+        type: "error"
+      });
+      return;
+    }
+    if(whatsappNumber.length !==10){
+        setToast({
+        show: true,
+        message: "Whatsapp number should be 10 digits",
+        type: "error"
+      });
+    }
+    if(!whatsappNumber.startsWith("077")&&!whatsappNumber.startsWith("078")&&!whatsappNumber.startsWith("071")){
+      setToast({
+        show: true,
+        message: "Whatsapp number should start with 077, 078 or 071",   
+        type: "error"
+      });
+      return; 
+    }
+  
+    try {
+      const data = {
+        whatsAppNumber: whatsappNumber.trim(),
+       email: email.trim(),
+        message: message.trim()
+      };
+      
+      const response = await fetch(
+        "https://portfolio-backend-fawn-one.vercel.app/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const result = await response.json();
+      if (!result) {
+       
+        setToast({
+          show: true,
+          message: result.error || "Something went wrong, please try again later",
+          type: "error"
+        });
+        return
+      } else {
+         setWhatsappNumber("");
+        setEmail("");
+        setMessage("")
+        setToast({show:true, message:result.message + ", Takudzwa will get back to you via WhatsApp/ Email", type:"success"})
+        return
+      }
+    } catch (error) {
+      setToast({
+        show: true,
+        message: "An error occurred while submitting your feedback. Please try again later" + error,
+        type: "error"
+      });
+
+      return
+    }
+  };
   return (
-    <div className="min-h-screen bg-gray-900 py-16">
+    <form onSubmit={handleSubmit} className="min-h-screen bg-gray-900 py-16">
+      {toast.show && (
+        <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg font-medium text-lg shadow-lg transition-all duration-300 ${
+          toast.type === "success"
+            ? "bg-green-500/20 text-green-500 border border-green-500/50 backdrop-blur-md"
+            : "bg-red-500/20 text-red-500 border border-red-500/50 backdrop-blur-md"
+        }`}>
+          {toast.message}
+        </div>
+      )}
       <div className="mb-10"><Home/></div>
       <div className="container mx-auto px-4">
         <div className="bg-gray-800 rounded-lg shadow-xl p-6 max-w-6xl mx-auto">
@@ -25,13 +115,14 @@ function Contact() {
               <div className="relative">
                 <input
                   className="w-full h-12 p-4 text-white bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  type="text"
+                  type="tel"
                   value={whatsappNumber}
                   onChange={(e) => setWhatsappNumber(e.target.value)}
                   name="number"
                   required
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
+                
                 />
                 <label
                   className={`absolute left-4 text-white font-medium transition-all duration-200 pointer-events-none ${
@@ -100,7 +191,7 @@ function Contact() {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
