@@ -49,7 +49,7 @@ function About() {
                 I'm a web developer
               </p>
               <p className="text-gray-400">
-                I have experience in frontend development and a passion for creating
+                I have experience in fullstack development and a passion for creating
                 efficient and scalable web applications. I enjoy turning complex problems
                 into simple, beautiful, and intuitive designs.
               </p>
